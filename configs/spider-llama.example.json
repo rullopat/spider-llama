@@ -22,7 +22,7 @@
       "id": "local-light-text",
       "backend_model": "local-light-text",
       "node": "local-llamacpp",
-      "aliases": ["light-text", "beehive-recommendation"],
+      "aliases": ["light-text", "fast-json"],
       "capabilities": ["text", "json"],
       "tags": ["light", "multilingual"],
       "context_tokens": 32768,
@@ -47,7 +47,7 @@
         "node_tags": ["local"]
       }
     },
-    "recommendation": {
+    "analysis": {
       "require": {
         "capabilities": ["text", "json"],
         "tags": ["light"]

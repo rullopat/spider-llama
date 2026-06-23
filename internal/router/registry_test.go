@@ -17,7 +17,7 @@ func testConfig() config.Config {
 			{ID: "large", Node: "remote", Capabilities: []string{"text", "json", "tools"}, Tags: []string{"reasoning"}, Priority: 80},
 		},
 		Routes: map[string]config.Route{
-			"recommendation": {
+			"analysis": {
 				Require: config.Requirements{Capabilities: []string{"text", "json"}},
 				Prefer:  config.Preferences{Tags: []string{"reasoning"}},
 			},
@@ -42,7 +42,7 @@ func TestSelectByAlias(t *testing.T) {
 func TestSelectByTaskPreferences(t *testing.T) {
 	reg := NewRegistry(testConfig())
 
-	candidates, err := reg.Select(SelectionRequest{Model: "auto", Task: "recommendation"})
+	candidates, err := reg.Select(SelectionRequest{Model: "auto", Task: "analysis"})
 	if err != nil {
 		t.Fatalf("select: %v", err)
 	}

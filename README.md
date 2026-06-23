@@ -4,6 +4,15 @@
 
 The MVP prioritizes a local `llama.cpp` `llama-server` instance, while keeping the architecture ready for multiple nodes, model aliases, capabilities, tags, and routing policies.
 
+## Project Planning
+
+- [Product requirements](docs/PRD.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Security notes](docs/SECURITY.md)
+- [Backlog](docs/backlog/README.md)
+- [Architecture decisions](docs/decisions/)
+
 ## MVP Shape
 
 ```text
@@ -80,7 +89,7 @@ curl -s http://127.0.0.1:8088/v1/route \
   -H "Content-Type: application/json" \
   -d '{
     "model": "auto",
-    "task": "recommendation",
+    "task": "analysis",
     "requirements": {
       "capabilities": ["text", "json"],
       "tags": ["light"]
