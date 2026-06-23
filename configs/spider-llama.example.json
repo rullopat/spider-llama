@@ -1,0 +1,60 @@
+{
+  "listen": ":8088",
+  "auth": {
+    "bearer_token_env": "SPIDER_LLAMA_TOKEN"
+  },
+  "request_limits": {
+    "max_body_bytes": 2097152,
+    "request_timeout_seconds": 180
+  },
+  "nodes": [
+    {
+      "id": "local-llamacpp",
+      "provider": "llamacpp",
+      "base_url": "http://127.0.0.1:8080",
+      "tags": ["local", "private", "llamacpp"],
+      "max_concurrency": 1,
+      "timeout_seconds": 180
+    }
+  ],
+  "models": [
+    {
+      "id": "local-light-text",
+      "backend_model": "local-light-text",
+      "node": "local-llamacpp",
+      "aliases": ["light-text", "beehive-recommendation"],
+      "capabilities": ["text", "json"],
+      "tags": ["light", "multilingual"],
+      "context_tokens": 32768,
+      "priority": 100
+    }
+  ],
+  "routes": {
+    "default": {
+      "require": {
+        "capabilities": ["text"]
+      },
+      "prefer": {
+        "node_tags": ["local"]
+      }
+    },
+    "light-text": {
+      "require": {
+        "capabilities": ["text"],
+        "tags": ["light"]
+      },
+      "prefer": {
+        "node_tags": ["local"]
+      }
+    },
+    "recommendation": {
+      "require": {
+        "capabilities": ["text", "json"],
+        "tags": ["light"]
+      },
+      "prefer": {
+        "node_tags": ["local"]
+      }
+    }
+  }
+}
